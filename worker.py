@@ -37,8 +37,8 @@ async def on_message(message):
     if message.content == "%verifyme":
         userID = message.author.id
         embed = discord.Embed(title="Scratch Verify", color=0xffbc05)
-        embed.add_field(name="Authentication Code: ", value=userID, inline=True)
-        embed.add_field(name="Instructions:", value="Please post this code on the profile you want to verify on, then enter %verify (profile)", inline=False)
+        embed.add_field(name="Authentication Code: ", value="`"+userID+"`", inline=False)
+        embed.add_field(name="Instructions:", value="`Please post this code on the profile you want to verify on, then enter %verify (profile).`", inline=False)
         await client.send_message(message.channel, embed=embed)
     
     if message.content.lower().startswith("%verify"):
@@ -48,11 +48,18 @@ async def on_message(message):
             if getCode(args, userID):
                 role = get(message.server.roles, name='Verified')
                 await client.add_roles(message.author, role)
-                await client.send_message(message.channel, "Authentication successfully completed")
+                embed = discord.Embed(title="Scratch Verify", color=0xffbc05)
+                embed.add_field(name="Status: ", value="`Authentication successfully completed.`", inline=False)
+                await client.send_message(message.channel, embed=embed)
             else:
-                await client.send_message(message.channel, "Authentication failed, please try again")
+                embed = discord.Embed(title="Scratch Verify", color=0xffbc05)
+                embed.add_field(name="Status: ", value="`Authentication failed, please retry.`", inline=False)
+                await client.send_message(message.channel, embed=embed)
 
     if message.content == "%help":
-        await client.send_message(message.channel, "```%verifyme: Generates a code to verify\n%verify (username): Authenticates the account ```")
+        embed = discord.Embed(title="Scratch Verify", decsription="`Always use the % prefix`" color=0xffbc05)
+        embed.add_field(name="verify", value="`Generate a verification code to use.`", inline=False)
+        embed.add_field(name="verifyme [username]", value="`Use this command to authenticate your account and receive the 'Verified' role.`", inline=False)
+        await client.send_message(message.channel, embed=embed)
         
 client.run("NDUyODUyNjA4NDI4NjcwOTg2.DfWZpg.bxQeETNk-BAHaG3aqJKORhOOONY")
