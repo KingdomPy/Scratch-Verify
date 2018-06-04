@@ -58,7 +58,7 @@ async def on_message(message):
 
     if message.content == "%help":
         embed = discord.Embed(title="Scratch Verify", description="`Always use the % prefix`", color=0xffbc05)
-        embed,add_field(name="help", value="`Always use the % prefix`", inline=False)
+        embed.add_field(name="help", value="`Always use the % prefix`", inline=False)
         embed.add_field(name="verifyme", value="`Generate a verification code to use.`", inline=False)
         embed.add_field(name="verify [username]", value="`Use this command to authenticate your account and receive the 'Verified' role.`", inline=False)
         await client.send_message(message.channel, embed=embed)
