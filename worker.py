@@ -51,7 +51,7 @@ async def on_message(message):
                     role = get(message.server.roles, name='Verified')
                     await client.add_roles(message.author, role)
                 except:
-                    extra = "' Verified role missing or insufficient permissions."
+                    extra = " Verified role missing or insufficient permissions."
                 embed = discord.Embed(title="Scratch Verify", color=0xffbc05)
                 embed.add_field(name="Status: ", value="`Authentication successfully completed."+extra+"`", inline=False)
                 await client.send_message(message.channel, embed=embed)
