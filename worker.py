@@ -48,5 +48,8 @@ async def on_message(message):
                 await client.send_message(message.channel, "Authentication successfully completed")
             else:
                 await client.send_message(message.channel, "Authentication failed, please try again")
+
+    if message.content == "%help":
+        await client.send_message(message.channel, "``` %verifyme: Generates a code to verify\n%verify (username) Authenticates the account ```")
         
 client.run("NDUyODUyNjA4NDI4NjcwOTg2.DfWZpg.bxQeETNk-BAHaG3aqJKORhOOONY")
