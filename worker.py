@@ -35,13 +35,12 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.content == "%verifyme":
-        embed = discord.Embed(title="Tile", description="Desc", color=0x00ff00)
-        embed.add_field(name="Field1", value="hi", inline=False)
-        embed.add_field(name="Field2", value="hi2", inline=False)
-        await client.send_message(message.channel, embed=embed)
         userID = message.author.id
-        await client.send_message(message.channel, ("Please post the code {} on the profile you want to verify on, then type %verify (username)").format(userID))
-
+        embed = discord.Embed(title="Scratch Verify", color=0xffbc05)
+        embed.add_field(name="Authentication Code: ", value=userID, inline=True)
+        embed.add_field(name="Instructions:", value="Please post this code on the profile you want to verify on, then enter %verify (profile)", inline=False)
+        await client.send_message(message.channel, embed=embed)
+    
     if message.content.lower().startswith("%verify"):
         userID = message.author.id
         args = " ".join(message.content.split(" ")[1:])
