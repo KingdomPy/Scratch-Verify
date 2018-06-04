@@ -46,10 +46,14 @@ async def on_message(message):
         args = " ".join(message.content.split(" ")[1:])
         if args != "":
             if getCode(args, userID):
-                role = get(message.server.roles, name='Verified')
-                await client.add_roles(message.author, role)
+                extra = ""
+                try:
+                    role = get(message.server.roles, name='Verified')
+                    await client.add_roles(message.author, role)
+                except:
+                    extra = "' Verified role missing or insufficient permissions."
                 embed = discord.Embed(title="Scratch Verify", color=0xffbc05)
-                embed.add_field(name="Status: ", value="`Authentication successfully completed.`", inline=False)
+                embed.add_field(name="Status: ", value="`Authentication successfully completed."+extra+"`", inline=False)
                 await client.send_message(message.channel, embed=embed)
             else:
                 embed = discord.Embed(title="Scratch Verify", color=0xffbc05)
