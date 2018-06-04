@@ -35,6 +35,10 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.content == "%verifyme":
+        embed = discord.Embed(title="Tile", description="Desc", color=0x00ff00)
+        embed.add_field(name="Field1", value="hi", inline=False)
+        embed.add_field(name="Field2", value="hi2", inline=False)
+        await client.send_message(message.channel, embed=embed)
         userID = message.author.id
         await client.send_message(message.channel, ("Please post the code {} on the profile you want to verify on, then type %verify (username)").format(userID))
 
@@ -50,6 +54,6 @@ async def on_message(message):
                 await client.send_message(message.channel, "Authentication failed, please try again")
 
     if message.content == "%help":
-        await client.send_message(message.channel, "``` %verifyme: Generates a code to verify\n%verify (username) Authenticates the account ```")
+        await client.send_message(message.channel, "```%verifyme: Generates a code to verify\n%verify (username): Authenticates the account ```")
         
 client.run("NDUyODUyNjA4NDI4NjcwOTg2.DfWZpg.bxQeETNk-BAHaG3aqJKORhOOONY")
