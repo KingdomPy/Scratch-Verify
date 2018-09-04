@@ -66,4 +66,4 @@ async def on_message(message):
         embed.add_field(name="verify [username]", value="`Use this command to authenticate your account and receive the 'Verified' role.`", inline=False)
         await client.send_message(message.channel, embed=embed)
         
-client.run("")
+client.run("NDUyODUyNjA4NDI4NjcwOTg2.DfWZpg.bxQeETNk-BAHaG3aqJKORhOOONY")
